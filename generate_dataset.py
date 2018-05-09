@@ -24,23 +24,22 @@ if not os.path.exists(directory):
 pathA = os.path.join(cwd,'T2')
 pathB = os.path.join(cwd,'ADC')
 
-for file in os.listdir(testPathA):
-    file_path = os.path.join(testPathA,file)
+# for file in os.listdir(pathA):
+#     file_path = os.path.join(pathA,file)
+#     n = np.random.rand(1)
+#     if int(file[11:14]) <= 300:
+#         shutil.copy(file_path,trainPathA)
+#     else:
+#         shutil.copy(file_path,testPathA)
+#     Acount += 1
+#     print(Acount)
+for file in os.listdir(pathB):
+    file_path = os.path.join(pathB,file)
     n = np.random.rand(1)
-    if n < 0.9:
-        shutil.copy(file_path,trainPathA)
-    else:
-        shutil.copy(file_path,testPathA)
-    Acount += 1
-    print(Acount)
-for file in os.listdir(testPathB):
-    file_path = os.path.join(testPathB,file)
-    n = np.random.rand(1)
-    if n < 0.9:
+    if int(file[11:14]) <= 300:
         shutil.copy(file_path,trainPathB)
     else:
         shutil.copy(file_path,testPathB)
     Bcount += 1
     print(Bcount)
-
     
