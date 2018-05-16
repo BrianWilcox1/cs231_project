@@ -39,12 +39,12 @@ for file in os.listdir(pathA):
         #image path to be copied for flip
         img_path = testPathA + '/' + file
         
-    #functionality for making vertical copies of images
+    #functionality for making horizontal copies of images
     img = cv2.imread(img_path)
-    vertical_img = cv2.flip(img, 1 )
+    horizontal_img = cv2.flip(img, 1 )
     file_path_b = img_path.replace(".png", "")
     file_path_b = file_path_b  + '_b.png'
-    cv2.imwrite(file_path_b , vertical_img)
+    cv2.imwrite(file_path_b , horizontal_img)
     
         
     Acount += 1
@@ -64,12 +64,12 @@ for file in os.listdir(pathB):
         #image path to be copied for flip
         img_path = testPathB + '/' + file
         
-    #functionality for making vertical copies of images
+    #functionality for making horizontal copies of images
     img = cv2.imread(img_path)
-    vertical_img = cv2.flip(img, 1 )
+    horizontal_img = cv2.flip(img, 1 )
     file_path_b = img_path.replace(".png", "")
     file_path_b = file_path_b  + '_b.png'
-    cv2.imwrite(file_path_b , vertical_img)
+    cv2.imwrite(file_path_b , horizontal_img)
         
     Bcount += 1
     print(Bcount)
