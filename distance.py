@@ -56,8 +56,8 @@ for file in os.listdir(pathA):
     file1 = os.path.join(pathA,file)
     file2 = os.path.join(pathB,file)
     if os.path.exists(file2):  #only continue if there is a matching image for comparison
-        img1 = cv2.imread(file1)
-        img2 = cv2.imread(file2)
+        img1 = cv2.imread(file1, 0) #read as grayscale
+        img2 = cv2.imread(file2, 0) #read as grayscale
         
         img1_vec = np.reshape(img1, (1, -1))
         img2_vec = np.reshape(img2, (1, -1))
