@@ -1,7 +1,7 @@
 ### Requests input of 2 directory names from user (relative to the directory that this script resides)
-### For all images in directory one, if there is a file with a matching name in directory two,
-### The L1 and L2 distance is computed between pixels in both images.
-### Data is output to file data_n.csv in the same folder as the script. 
+### For selected image in the generated GAN data set, the script returns the nearest neighbor from the training dataset.
+### Both images are copied and saved in the same directory as neighbor.py file. 
+### This file should be run right outside of the two directories of images that are being compared. 
 
 from __future__ import print_function
 
