@@ -19,6 +19,7 @@ cwd = os.getcwd() #current directory
 var1 = input("Please enter the first directory name in quotes (GAN generated images): ")
 var2 = input("Please enter the second directory name in quotes (Training Dataset): ")
 var3 = input("Which image number from the GAN generated data set would you like to use? This is zero indexed.")
+
 var3 = int(var3)
 
 pathA = os.path.join(cwd,var1)
@@ -43,7 +44,8 @@ for file in os.listdir(pathA):
         #cv2.imshow( "image", img1)
        
         
-        nearest_value = 1000000000
+        nearest_value_l1 = float('Inf')
+        nearest_value_l2 = float('Inf')
         for file in os.listdir(pathB):
             file2 = os.path.join(pathB,file)            
             img2 = cv2.imread(file2, 0) #read GAN generated image as grayscale
@@ -51,35 +53,44 @@ for file in os.listdir(pathA):
             img1_vec = np.reshape(img1, (1, -1))
             img2_vec = np.reshape(img2, (1, -1))
 
-            #L1_norm = np.sum(abs(img1_vec - img2_vec)) 
+            L1_norm = np.sum(abs(img1_vec - img2_vec)) 
             #print(img1_vec - img2_vec)
             #print(L1_norm)
             L2_norm = np.linalg.norm((img1_vec - img2_vec)) 
             #print(L2_norm)
-            if L2_norm < nearest_value:
-                nearest_value = L2_norm
-                nearest_file = file
-                nearest_img = img2
+            if L1_norm < nearest_value_l1:
+                nearest_value_l1 = L1_norm
+                nearest_file_l1 = file
+                nearest_img_l1 = img2
+                #print("Updated Nearest Neighbor!")
+
+            if L2_norm < nearest_value_l2:
+                nearest_value_l2 = L2_norm
+                nearest_file_l2 = file
+                nearest_img_l2 = img2
                 #print("Updated Nearest Neighbor!")
                 
                 
 
     image_number += 1 #increment image number
 
-print("Final nearest neighbor from training set is: {}".format(nearest_file))
-print("Final Euclidian (L2) distance for nearest neighbor is: {} ".format(nearest_value))
+print("Final nearest L1 neighbor from training set is: {}".format(nearest_file_l1))
+print("Final nearest L2 neighbor from training set is: {}".format(nearest_file_l2))
+print("Final Manhatten (L1) distance for nearest neighbor is: {} ".format(nearest_value_l1))
+print("Final Euclidian (L2) distance for nearest neighbor is: {} ".format(nearest_value_l2))
 
 
+file_out1 = os.path.join(cwd, "GAN_neighbor_image.png")
+file_out2 = os.path.join(cwd, "training_"+"L1"+".png")
+file_out3 = os.path.join(cwd, "training_"+"L2"+".png")
 
-file_out1 = os.path.join(cwd, "training_image.png")
-file_out2 = os.path.join(cwd, "GAN_neighbor_image.png")
  
 #print(file_out1)
 #print(file_out2)
- 
-cv2.imwrite(file_out1 , nearest_img)
-cv2.imwrite(file_out2 , img1)
 
+cv2.imwrite(file_out1 , img1)
+cv2.imwrite(file_out2 , nearest_img_l1)
+cv2.imwrite(file_out3 , nearest_img_l2)
 
     
 
