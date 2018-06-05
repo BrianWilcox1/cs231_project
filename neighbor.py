@@ -19,7 +19,7 @@ cwd = os.getcwd() #current directory
 var1 = input("Please enter the first directory name in quotes (GAN generated images): ")
 var2 = input("Please enter the second directory name in quotes (Training Dataset): ")
 var3 = input("Which image number from the GAN generated data set would you like to use? This is zero indexed.")
-
+var3 = int(var3)
 
 pathA = os.path.join(cwd,var1)
 pathB = os.path.join(cwd,var2)
@@ -77,8 +77,8 @@ file_out2 = os.path.join(cwd, "GAN_neighbor_image.png")
 #print(file_out1)
 #print(file_out2)
  
-cv2.imwrite(file_out1 , img1)
-cv2.imwrite(file_out2 , nearest_img)
+cv2.imwrite(file_out1 , nearest_img)
+cv2.imwrite(file_out2 , img1)
 
 
     
