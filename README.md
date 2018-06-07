@@ -1,5 +1,5 @@
 # cs231_project
-6/6/2018
+6/7/2018
 Steps to try to replicate results:
 1. Download PROSTATEx-v1-doinlp.jnlp file from ProstateX website :https://wiki.cancerimagingarchive.net/plugins/servlet/mobile?contentId=23691656#content/view/23691656 
 2. Depending on your operating system, find a way to open and run the file to the get the dicom image data: https://fileinfo.com/extension/jnlp. This is a lot of data (1.5 GB unaugmented)
